@@ -27,7 +27,7 @@ public class FuncionarioController {
         }
     }
 
-    public void update(Funcionario funcionario) {
+    public void edit(Funcionario funcionario) {
         Conexao c = new Conexao();
         c.conectar();
         String sql = "UPDATE tb_funcionario SET vc_cpf = ?, vc_nome = ?, vc_cargo = ? WHERE id_funcionario = ?";
@@ -62,15 +62,15 @@ public class FuncionarioController {
         List<Funcionario> lista = new ArrayList<>();
         String sql = "SELECT * FROM tb_funcionario ORDER BY vc_nome";
         try {
-            Statement stmt = c.conector.createStatement();
-            ResultSet rs = stmt.executeQuery(sql);
+            PreparedStatement ps = c.conector.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery(sql);
             while (rs.next()) {
-                Funcionario f = new Funcionario();
-                f.setIdFuncionario(rs.getInt("id_funcionario"));
-                f.setCpf(rs.getString("vc_cpf"));
-                f.setNome(rs.getString("vc_nome"));
-                f.setCargo(CargoFuncionario.fromDescricao(rs.getString("vc_cargo")));
-                lista.add(f);
+                Funcionario funcionario = new Funcionario();
+                funcionario.setIdFuncionario(rs.getInt("id_funcionario"));
+                funcionario.setCpf(rs.getString("vc_cpf"));
+                funcionario.setNome(rs.getString("vc_nome"));
+                funcionario.setCargo(CargoFuncionario.fromDescricao(rs.getString("vc_cargo")));
+                lista.add(funcionario);
             }
         } catch (SQLException e) {
             System.out.println("Erro ao listar : " + e.getMessage());
