@@ -8,7 +8,6 @@ import java.util.List;
 
 import connection.Conexao;
 import enums.CategoriaQuarto;
-import model.Hospede;
 import model.Quarto;
 
 public class QuartoController {
@@ -90,6 +89,7 @@ public class QuartoController {
             if (rs.next()) {
                 String categoriaDescricao = rs.getString("vc_categoria");
                 CategoriaQuarto categoriaQuarto = CategoriaQuarto.fromDescricao(categoriaDescricao);
+                quarto = new Quarto();
                 quarto.setCategoria(categoriaQuarto);
                 quarto.setValor(rs.getFloat("int_valor"));
                 quarto.setIdQuarto(rs.getInt("id_hospede"));
