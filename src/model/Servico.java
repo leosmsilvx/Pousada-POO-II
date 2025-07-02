@@ -51,5 +51,14 @@ public class Servico{
     }
     public void setTipo(TipoServico tipo) {
         this.tipo = tipo;
-    }    
+    }
+
+    public java.sql.Date getDtServicoSql(){
+        return new java.sql.Date(dtServico.getTime());
+    }
+
+    public Integer getValorInteger(){
+        Float valorConvertido = valor * 100;
+        return valorConvertido.intValue();
+    }
 }
