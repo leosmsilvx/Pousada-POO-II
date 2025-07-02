@@ -38,4 +38,9 @@ public class Quarto {
     public String toString() {
         return  idQuarto + " - " + categoria + " - R$" + valor;
     }    
+    
+    public Integer getValorInteger() {
+        Float valorConvertido = valor * 100;
+        return valorConvertido.intValue();
+    }
 }
