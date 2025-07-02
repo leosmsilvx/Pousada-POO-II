@@ -22,9 +22,9 @@ public class EstadiaController {
 
         try {
             PreparedStatement ps = c.conector.prepareStatement(sql);
-            ps.setDate(1, estadia.getDtCheckinSQL());
-            ps.setDate(2, estadia.getDtCheckoutEsperadoSQL());
-            ps.setDate(3, estadia.getDtCheckoutFinalSQL());
+            ps.setDate(1, estadia.getDtCheckinSql());
+            ps.setDate(2, estadia.getDtCheckoutEsperadoSql());
+            ps.setDate(3, estadia.getDtCheckoutFinalSql());
             ps.setInt(4, estadia.getHospede().getIdHospede());
             ps.setInt(5, estadia.getQuarto().getIdQuarto());
             ps.execute();
@@ -41,9 +41,9 @@ public class EstadiaController {
 
         try {
             PreparedStatement ps = c.conector.prepareStatement(sql);
-            ps.setDate(1, estadia.getDtCheckinSQL());
-            ps.setDate(2, estadia.getDtCheckoutEsperadoSQL());
-            ps.setDate(3, estadia.getDtCheckoutFinalSQL());
+            ps.setDate(1, estadia.getDtCheckinSql());
+            ps.setDate(2, estadia.getDtCheckoutEsperadoSql());
+            ps.setDate(3, estadia.getDtCheckoutFinalSql());
             ps.setInt(4, estadia.getHospede().getIdHospede());
             ps.setInt(5, estadia.getQuarto().getIdQuarto());
             ps.setInt(6, estadia.getIdEstadia());

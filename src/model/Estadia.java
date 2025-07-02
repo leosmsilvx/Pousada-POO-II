@@ -57,4 +57,13 @@ public class Estadia {
     public void setQuarto(Quarto quarto) {
         this.quarto = quarto;
     }
+    public java.sql.Date getDtCheckinSql(){
+        return new java.sql.Date(dtCheckin.getTime());
+    }
+    public java.sql.Date getDtCheckoutEsperadoSql(){
+        return new java.sql.Date(dtCheckoutEsperado.getTime());
+    }
+    public java.sql.Date getDtCheckoutFinalSql(){
+        return new java.sql.Date(dtCheckoutFinal.getTime());
+    }
 }
