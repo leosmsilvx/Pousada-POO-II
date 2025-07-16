@@ -99,4 +99,27 @@ public class FuncionarioController {
         }
         return null;
     }
+    
+    public List<Funcionario> findByNomeFuncionario(String nome){
+        Conexao c = new Conexao();
+        c.conectar();
+        List<Funcionario> lista = new ArrayList<>();
+        String sql = "SELECT * FROM tb_funcionario WHERE vc_nome LIKE ?";
+        try {
+            PreparedStatement ps = c.conector.prepareStatement(sql);
+            ps.setString(1, "%" + nome + "%");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Funcionario funcionario = new Funcionario();
+                funcionario.setIdFuncionario(rs.getInt("id_funcionario"));
+                funcionario.setCpf(rs.getString("vc_cpf"));
+                funcionario.setNome(rs.getString("vc_nome"));
+                funcionario.setCargo(CargoFuncionario.fromDescricao(rs.getString("vc_cargo")));
+                lista.add(funcionario);
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao listar : " + e.getMessage());
+        }
+        return lista;
+    }
 }

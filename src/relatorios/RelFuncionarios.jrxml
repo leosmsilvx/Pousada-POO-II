@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.5.final using JasperReports Library version 6.21.5-74d586df47b25dbd05bd0957999819196e59934a  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelFuncionarios" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8e15d519-eab3-497d-b483-a5c1caac3ee0">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="sistemahospedagem"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+        <parameter name="nome" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT * FROM  sistemahospedagem.tb_funcionario WHERE VC_NOME LIKE $P{nome}]]>
+	</queryString>
+	<field name="ID_FUNCIONARIO" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="ID_FUNCIONARIO"/>
+		<property name="com.jaspersoft.studio.field.label" value="ID_FUNCIONARIO"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="tb_funcionario"/>
+		<fieldDescription><![CDATA[ID do Funcionário]]></fieldDescription>
+	</field>
+	<field name="VC_CPF" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="VC_CPF"/>
+		<property name="com.jaspersoft.studio.field.label" value="VC_CPF"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="tb_funcionario"/>
+		<fieldDescription><![CDATA[CPF do Funcionário]]></fieldDescription>
+	</field>
+	<field name="VC_CARGO" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="VC_CARGO"/>
+		<property name="com.jaspersoft.studio.field.label" value="VC_CARGO"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="tb_funcionario"/>
+		<fieldDescription><![CDATA[Cargo do funcionário (Recepcionista, Camareira, Cozinheiro, Chefe, Garçom, Guia, Gerente)]]></fieldDescription>
+	</field>
+	<field name="VC_NOME" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="VC_NOME"/>
+		<property name="com.jaspersoft.studio.field.label" value="VC_NOME"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="tb_funcionario"/>
+		<fieldDescription><![CDATA[Nome do Funcionário]]></fieldDescription>
+	</field>
+	<group name="Group1">
+		<groupExpression><![CDATA[$F{VC_CARGO}]]></groupExpression>
+		<groupHeader>
+			<band height="40">
+				<textField>
+					<reportElement style="SubTitle" x="0" y="10" width="506" height="24" forecolor="#CC0000" uuid="d68ccb36-41b2-4e35-86c2-dc324562ca08"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{VC_CARGO}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="6"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="0" y="13" width="510" height="33" uuid="91f5fe7f-a65f-46a3-81ae-30f2d82c45a2"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Relatório Funcionários]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="0" y="46" width="157" height="22" uuid="6931f6fc-c9e8-4cc3-9eec-607a123c87f7"/>
+				<text><![CDATA[Por cargo]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1" uuid="2c4ebb21-8745-45a1-a9ad-477acaac72cb"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="19" width="185" height="15" uuid="7c76fe5f-1ab8-4574-abc8-8b2d68bbb19c">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="416f1030-3af1-4327-878f-ecd1215f70d8"/>
+				</reportElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="185" y="19" width="185" height="15" uuid="df4ccf23-f53f-47a5-a278-2626585b696f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="398ebe4f-1a08-4314-9b16-4f6f3c8d5e68"/>
+				</reportElement>
+				<text><![CDATA[CPF]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="370" y="19" width="185" height="15" uuid="b575ae79-9ed1-4762-9fbc-1ffacae85311">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="75b6a86c-abae-4056-804b-1a9aa19aab67"/>
+				</reportElement>
+				<text><![CDATA[NOME]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="ffde0804-90e8-496b-86fb-ee363619f187"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement style="Detail" x="0" y="0" width="185" height="15" uuid="d697823b-e861-489e-be6a-0760515e72c3">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="416f1030-3af1-4327-878f-ecd1215f70d8"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{ID_FUNCIONARIO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="185" y="0" width="185" height="15" uuid="8acdcbb5-060a-4fc3-b26e-4c9892efe1ef">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="398ebe4f-1a08-4314-9b16-4f6f3c8d5e68"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{VC_CPF}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="370" y="0" width="185" height="15" uuid="2b527599-286d-41fe-8f12-2bc7dc58318a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="75b6a86c-abae-4056-804b-1a9aa19aab67"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{VC_NOME}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="30093aa1-3dd7-4eea-9cc9-e183637af8f4"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="c9e9a989-76ae-4c92-a08c-dba3c3185f04"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="736cac2d-8f9a-48bb-b4e7-09302ce0e313"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="c49bc611-71b3-4860-8112-76288860b48d"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

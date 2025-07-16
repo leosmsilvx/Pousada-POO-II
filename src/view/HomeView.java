@@ -7,6 +7,7 @@ package view;
 import javax.swing.JOptionPane;
 import view.funcionarios.CadastrarFuncionarioView;
 import view.funcionarios.GerenciarFuncionarioView;
+import view.funcionarios.RelatorioFuncionarioView;
 
 /**
  *
@@ -33,9 +34,14 @@ public class HomeView extends javax.swing.JFrame {
                 } catch (java.beans.PropertyVetoException e) {
                     JOptionPane.showMessageDialog(this, "Erro ao focar na janela: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
                 }
+            } else {
+                frame.dispose();
             }
         }
 
+        areaDeTrabalho.setPreferredSize(viewParaAbrir.getBounds().getSize());
+        areaDeTrabalho.revalidate();
+        viewParaAbrir.pack();
         areaDeTrabalho.add(viewParaAbrir);
         viewParaAbrir.setVisible(true);
         try {
@@ -59,6 +65,7 @@ public class HomeView extends javax.swing.JFrame {
         jmFuncionario = new javax.swing.JMenu();
         jmiCadastrarFunc = new javax.swing.JMenuItem();
         jmiGerenciarFunc = new javax.swing.JMenuItem();
+        jmiRelatorioFunc = new javax.swing.JMenuItem();
         jmQuarto = new javax.swing.JMenu();
         jmiCadastrarQuar = new javax.swing.JMenuItem();
         jmEstadia = new javax.swing.JMenu();
@@ -98,6 +105,13 @@ public class HomeView extends javax.swing.JFrame {
             }
         });
         jmFuncionario.add(jmiGerenciarFunc);
+        jmiRelatorioFunc.setText("Relatório");
+        jmiRelatorioFunc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiRelatorioFuncActionPerformed(evt);
+            }
+        });
+        jmFuncionario.add(jmiRelatorioFunc);
 
         jmbPrincipal.add(jmFuncionario);
 
@@ -147,6 +161,10 @@ public class HomeView extends javax.swing.JFrame {
         GerenciarFuncionarioView gerfuncview = new GerenciarFuncionarioView();
         abrirOuFocarView(gerfuncview);
     }//GEN-LAST:event_jmiGerenciarFuncActionPerformed
+    private void jmiRelatorioFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiRelatorioFuncActionPerformed
+        RelatorioFuncionarioView relfuncview = new RelatorioFuncionarioView();
+        abrirOuFocarView(relfuncview);
+    }//GEN-LAST:event_jmiRelatorioFuncActionPerformed
 
     /**
      * @param args the command line arguments
@@ -185,5 +203,6 @@ public class HomeView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmiCadastrarQuar;
     private javax.swing.JMenuItem jmiCadastrarServ;
     private javax.swing.JMenuItem jmiGerenciarFunc;
+    private javax.swing.JMenuItem jmiRelatorioFunc;
     // End of variables declaration//GEN-END:variables
 }
