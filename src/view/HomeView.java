@@ -8,6 +8,9 @@ import javax.swing.JOptionPane;
 import view.funcionarios.CadastrarFuncionarioView;
 import view.funcionarios.GerenciarFuncionarioView;
 import view.funcionarios.RelatorioFuncionarioView;
+import view.quartos.CadastrarQuartoView;
+import view.quartos.GerenciarQuartoView;
+import view.quartos.RelatorioQuartoView;
 
 /**
  *
@@ -68,6 +71,8 @@ public class HomeView extends javax.swing.JFrame {
         jmiRelatorioFunc = new javax.swing.JMenuItem();
         jmQuarto = new javax.swing.JMenu();
         jmiCadastrarQuar = new javax.swing.JMenuItem();
+        jmiGerenciarQuar = new javax.swing.JMenuItem();
+        jmiRelatorioQuar = new javax.swing.JMenuItem();
         jmEstadia = new javax.swing.JMenu();
         jmiCadastrarEsta = new javax.swing.JMenuItem();
         jmServicos = new javax.swing.JMenu();
@@ -105,6 +110,7 @@ public class HomeView extends javax.swing.JFrame {
             }
         });
         jmFuncionario.add(jmiGerenciarFunc);
+
         jmiRelatorioFunc.setText("Relatório");
         jmiRelatorioFunc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,7 +124,28 @@ public class HomeView extends javax.swing.JFrame {
         jmQuarto.setText("Quartos");
 
         jmiCadastrarQuar.setText("Cadastrar");
+        jmiCadastrarQuar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiCadastrarQuarActionPerformed(evt);
+            }
+        });
         jmQuarto.add(jmiCadastrarQuar);
+
+        jmiGerenciarQuar.setText("Gerenciar");
+        jmiGerenciarQuar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiGerenciarQuarActionPerformed(evt);
+            }
+        });
+        jmQuarto.add(jmiGerenciarQuar);
+
+        jmiRelatorioQuar.setText("Relatório");
+        jmiRelatorioQuar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiRelatorioQuarActionPerformed(evt);
+            }
+        });
+        jmQuarto.add(jmiRelatorioQuar);
 
         jmbPrincipal.add(jmQuarto);
 
@@ -166,6 +193,21 @@ public class HomeView extends javax.swing.JFrame {
         abrirOuFocarView(relfuncview);
     }//GEN-LAST:event_jmiRelatorioFuncActionPerformed
 
+    private void jmiGerenciarQuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiGerenciarQuarActionPerformed
+        GerenciarQuartoView gerquarview = new GerenciarQuartoView();
+        abrirOuFocarView(gerquarview);
+    }//GEN-LAST:event_jmiGerenciarQuarActionPerformed
+
+    private void jmiCadastrarQuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCadastrarQuarActionPerformed
+        CadastrarQuartoView cadquarview = new CadastrarQuartoView();
+        abrirOuFocarView(cadquarview);
+    }//GEN-LAST:event_jmiCadastrarQuarActionPerformed
+
+    private void jmiRelatorioQuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiRelatorioQuarActionPerformed
+        RelatorioQuartoView relquarview = new RelatorioQuartoView();
+        abrirOuFocarView(relquarview);
+    }//GEN-LAST:event_jmiRelatorioQuarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -203,6 +245,8 @@ public class HomeView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmiCadastrarQuar;
     private javax.swing.JMenuItem jmiCadastrarServ;
     private javax.swing.JMenuItem jmiGerenciarFunc;
+    private javax.swing.JMenuItem jmiGerenciarQuar;
     private javax.swing.JMenuItem jmiRelatorioFunc;
+    private javax.swing.JMenuItem jmiRelatorioQuar;
     // End of variables declaration//GEN-END:variables
 }

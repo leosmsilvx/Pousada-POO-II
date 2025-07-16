@@ -190,6 +190,8 @@ public class GerenciarFuncionarioView extends javax.swing.JInternalFrame {
         FuncionarioController controller = new FuncionarioController();
         List<Funcionario> lista = controller.findAll();
         if (lista.isEmpty()) {
+            DefaultTableModel modeloTabela = (DefaultTableModel) jtFuncionarios.getModel();
+            modeloTabela.setRowCount(0);
             JOptionPane.showMessageDialog(this, "Nenhum Fornecedor Cadastrado", "Retorno Tela", JOptionPane.ERROR_MESSAGE);
         }
         else {
@@ -208,6 +210,7 @@ public class GerenciarFuncionarioView extends javax.swing.JInternalFrame {
     private void limparCampos(){
         jtxNome.setText("");
         jtxCpf.setText("");
+        jtxIdFuncionario.setText("");
         jcbCargo.setSelectedIndex(0);
     }
     
@@ -226,24 +229,12 @@ public class GerenciarFuncionarioView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jtxCpfActionPerformed
 
     private void jbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirActionPerformed
-        String nome = jtxNome.getText();
-        String cpf = jtxCpf.getText().replace("-", "").replace(".", "");
-        CargoFuncionario cargo = (CargoFuncionario) jcbCargo.getSelectedItem();
-        if ((nome.isEmpty()) || (cpf.isEmpty()) || (cargo.getDescricao().isEmpty())) {
-            JOptionPane.showMessageDialog(this, "Digite todos os campos", "Retorno Tela", JOptionPane.ERROR_MESSAGE);
-        }
-        else {
-            Funcionario funcionario = new Funcionario();
-            funcionario.setCargo(cargo);
-            funcionario.setCpf(cpf);
-            funcionario.setNome(nome);
-            //CONTROLLER
-            FuncionarioController controller = new FuncionarioController();
-            controller.insert(funcionario);
-            JOptionPane.showMessageDialog(this, "Fornecedor Inserido com Sucesso!");
-            limparCampos();
-            preencherTabela();
-        }
+        Integer id = Integer.valueOf(jtxIdFuncionario.getText());
+        FuncionarioController controller = new FuncionarioController();
+        controller.delete(id);
+        JOptionPane.showMessageDialog(this, "Fornecedor excluído com Sucesso!");
+        limparCampos();
+        preencherTabela();
     }//GEN-LAST:event_jbExcluirActionPerformed
 
     private void jcbCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbCargoActionPerformed
@@ -251,7 +242,25 @@ public class GerenciarFuncionarioView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jcbCargoActionPerformed
 
     private void jbEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEditarActionPerformed
-        // TODO add your handling code here:
+        String nome = jtxNome.getText();
+        String cpf = jtxCpf.getText().replace("-", "").replace(".", "");
+        Integer id = Integer.valueOf(jtxIdFuncionario.getText());
+        CargoFuncionario cargo = (CargoFuncionario) jcbCargo.getSelectedItem();
+        if ((nome.isEmpty()) || (cpf.isEmpty()) || (cargo.getDescricao().isEmpty())) {
+            JOptionPane.showMessageDialog(this, "Digite todos os campos", "Retorno Tela", JOptionPane.ERROR_MESSAGE);
+        }
+        else {
+            Funcionario funcionario = new Funcionario();
+            funcionario.setIdFuncionario(id);
+            funcionario.setCargo(cargo);
+            funcionario.setCpf(cpf);
+            funcionario.setNome(nome);
+            FuncionarioController controller = new FuncionarioController();
+            controller.edit(funcionario);
+            JOptionPane.showMessageDialog(this, "Funcionário editado com Sucesso!");
+            limparCampos();
+            preencherTabela();
+        }
     }//GEN-LAST:event_jbEditarActionPerformed
 
     private void jtFuncionariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtFuncionariosMouseClicked
@@ -260,7 +269,7 @@ public class GerenciarFuncionarioView extends javax.swing.JInternalFrame {
             jtxIdFuncionario.setText(jtFuncionarios.getValueAt(linha, 0).toString());
             jtxNome.setText(jtFuncionarios.getValueAt(linha, 1).toString());
             jtxCpf.setText(jtFuncionarios.getValueAt(linha, 2).toString());
-            jcbCargo.setSelectedItem((CargoFuncionario) jtFuncionarios.getValueAt(linha, 4));
+            jcbCargo.setSelectedItem((CargoFuncionario) jtFuncionarios.getValueAt(linha, 3));
             jbEditar.setEnabled(true);
             jbExcluir.setEnabled(true);
             jtxIdFuncionario.setEditable(false);
@@ -287,9 +296,4 @@ public class GerenciarFuncionarioView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jtxNome;
     // End of variables declaration//GEN-END:variables
 
-    private static class FuncionarioModel {
-
-        public FuncionarioModel() {
-        }
-    }
 }

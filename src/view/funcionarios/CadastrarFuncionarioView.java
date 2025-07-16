@@ -6,7 +6,6 @@ package view.funcionarios;
 
 import controller.FuncionarioController;
 import enums.CargoFuncionario;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -151,7 +150,7 @@ public class CadastrarFuncionarioView extends javax.swing.JInternalFrame {
         FuncionarioController controller = new FuncionarioController();
         List<Funcionario> lista = controller.findAll();
         if (lista.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Nenhum Fornecedor Cadastrado", "Retorno Tela", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Nenhum Funcionário Cadastrado", "Retorno Tela", JOptionPane.ERROR_MESSAGE);
         }
         else {
             DefaultTableModel modeloTabela = (DefaultTableModel) jtFuncionarios.getModel();
@@ -197,10 +196,9 @@ public class CadastrarFuncionarioView extends javax.swing.JInternalFrame {
             funcionario.setCargo(cargo);
             funcionario.setCpf(cpf);
             funcionario.setNome(nome);
-            //CONTROLLER
             FuncionarioController controller = new FuncionarioController();
             controller.insert(funcionario);
-            JOptionPane.showMessageDialog(this, "Fornecedor Inserido com Sucesso!");
+            JOptionPane.showMessageDialog(this, "Funcionário Inserido com Sucesso!");
             limparCampos();
             preencherTabela();
         }
@@ -222,10 +220,4 @@ public class CadastrarFuncionarioView extends javax.swing.JInternalFrame {
     private javax.swing.JFormattedTextField jtxCpf;
     private javax.swing.JTextField jtxNome;
     // End of variables declaration//GEN-END:variables
-
-    private static class FuncionarioModel {
-
-        public FuncionarioModel() {
-        }
-    }
 }
