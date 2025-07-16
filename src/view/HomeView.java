@@ -6,6 +6,7 @@ package view;
 
 import javax.swing.JOptionPane;
 import view.funcionarios.CadastrarFuncionarioView;
+import view.funcionarios.GerenciarFuncionarioView;
 
 /**
  *
@@ -57,6 +58,7 @@ public class HomeView extends javax.swing.JFrame {
         jmbPrincipal = new javax.swing.JMenuBar();
         jmFuncionario = new javax.swing.JMenu();
         jmiCadastrarFunc = new javax.swing.JMenuItem();
+        jmiGerenciarFunc = new javax.swing.JMenuItem();
         jmQuarto = new javax.swing.JMenu();
         jmiCadastrarQuar = new javax.swing.JMenuItem();
         jmEstadia = new javax.swing.JMenu();
@@ -65,7 +67,6 @@ public class HomeView extends javax.swing.JFrame {
         jmiCadastrarServ = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(700, 500));
 
         areaDeTrabalho.setDragMode(javax.swing.JDesktopPane.OUTLINE_DRAG_MODE);
 
@@ -89,6 +90,14 @@ public class HomeView extends javax.swing.JFrame {
             }
         });
         jmFuncionario.add(jmiCadastrarFunc);
+
+        jmiGerenciarFunc.setText("Gerenciar");
+        jmiGerenciarFunc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiGerenciarFuncActionPerformed(evt);
+            }
+        });
+        jmFuncionario.add(jmiGerenciarFunc);
 
         jmbPrincipal.add(jmFuncionario);
 
@@ -134,6 +143,11 @@ public class HomeView extends javax.swing.JFrame {
         abrirOuFocarView(cadfuncview);
     }//GEN-LAST:event_jmiCadastrarFuncActionPerformed
 
+    private void jmiGerenciarFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiGerenciarFuncActionPerformed
+        GerenciarFuncionarioView gerfuncview = new GerenciarFuncionarioView();
+        abrirOuFocarView(gerfuncview);
+    }//GEN-LAST:event_jmiGerenciarFuncActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -170,5 +184,6 @@ public class HomeView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmiCadastrarFunc;
     private javax.swing.JMenuItem jmiCadastrarQuar;
     private javax.swing.JMenuItem jmiCadastrarServ;
+    private javax.swing.JMenuItem jmiGerenciarFunc;
     // End of variables declaration//GEN-END:variables
 }

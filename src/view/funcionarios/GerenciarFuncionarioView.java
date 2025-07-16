@@ -17,14 +17,18 @@ import model.Funcionario;
  *
  * @author leoms
  */
-public class CadastrarFuncionarioView extends javax.swing.JInternalFrame {
+public class GerenciarFuncionarioView extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form CadastrarFuncionarioView
      */
-    public CadastrarFuncionarioView() {
+    
+    private Integer linha = -1;
+    
+    public GerenciarFuncionarioView() {
         initComponents();
         preencherCombo();
+        Inicializar();
         preencherTabela();
     }
 
@@ -43,9 +47,12 @@ public class CadastrarFuncionarioView extends javax.swing.JInternalFrame {
         jtxNome = new javax.swing.JTextField();
         jtxCpf = new javax.swing.JFormattedTextField();
         jcbCargo = new javax.swing.JComboBox<CargoFuncionario>();
-        jbSalvar = new javax.swing.JButton();
+        jbExcluir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtFuncionarios = new javax.swing.JTable();
+        jbEditar = new javax.swing.JButton();
+        jlIdFuncionario = new javax.swing.JLabel();
+        jtxIdFuncionario = new javax.swing.JTextField();
 
         jlNome.setText("Nome:");
 
@@ -76,56 +83,79 @@ public class CadastrarFuncionarioView extends javax.swing.JInternalFrame {
             }
         });
 
-        jbSalvar.setText("Salvar");
-        jbSalvar.addActionListener(new java.awt.event.ActionListener() {
+        jbExcluir.setText("Excluir");
+        jbExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbSalvarActionPerformed(evt);
+                jbExcluirActionPerformed(evt);
             }
         });
 
         jtFuncionarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Nome", "Cpf", "Cargo"
+                "Id", "Nome", "Cpf", "Cargo"
             }
         ));
+        jtFuncionarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtFuncionariosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jtFuncionarios);
+
+        jbEditar.setText("Editar");
+        jbEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbEditarActionPerformed(evt);
+            }
+        });
+
+        jlIdFuncionario.setText("ID:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jlCpf)
                             .addComponent(jlNome)
-                            .addComponent(jlCargo))
+                            .addComponent(jlCargo)
+                            .addComponent(jlIdFuncionario))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jtxNome, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jcbCargo, javax.swing.GroupLayout.Alignment.LEADING, 0, 186, Short.MAX_VALUE)
-                                .addComponent(jtxCpf, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(190, 190, 190)
-                                .addComponent(jbSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jtxCpf, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jcbCargo, javax.swing.GroupLayout.Alignment.LEADING, 0, 186, Short.MAX_VALUE))
+                            .addComponent(jtxIdFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 607, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(58, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(95, 95, 95)
+                                .addComponent(jbEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(159, 159, 159)
+                                .addComponent(jbExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 607, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(58, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(24, 24, 24)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlIdFuncionario)
+                    .addComponent(jtxIdFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jlNome)
                     .addComponent(jtxNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -137,15 +167,24 @@ public class CadastrarFuncionarioView extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlCargo)
                     .addComponent(jcbCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39)
-                .addComponent(jbSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    private void Inicializar(){
+        jtxIdFuncionario.setEditable(false);
+        jtxNome.setEditable(false);
+        jtxCpf.setEditable(false);
+        jcbCargo.setEditable(false);
+    }
     
     private void preencherTabela(){
         FuncionarioController controller = new FuncionarioController();
@@ -158,6 +197,7 @@ public class CadastrarFuncionarioView extends javax.swing.JInternalFrame {
             modeloTabela.setRowCount(0);
             for (Funcionario f: lista) {
                 modeloTabela.addRow(new Object[]{ 
+                    f.getIdFuncionario(),
                     f.getNome(),
                     f.getCpf(),
                     f.getCargo()});
@@ -185,7 +225,7 @@ public class CadastrarFuncionarioView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtxCpfActionPerformed
 
-    private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
+    private void jbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirActionPerformed
         String nome = jtxNome.getText();
         String cpf = jtxCpf.getText().replace("-", "").replace(".", "");
         CargoFuncionario cargo = (CargoFuncionario) jcbCargo.getSelectedItem();
@@ -204,22 +244,46 @@ public class CadastrarFuncionarioView extends javax.swing.JInternalFrame {
             limparCampos();
             preencherTabela();
         }
-    }//GEN-LAST:event_jbSalvarActionPerformed
+    }//GEN-LAST:event_jbExcluirActionPerformed
 
     private void jcbCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbCargoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jcbCargoActionPerformed
 
+    private void jbEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEditarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbEditarActionPerformed
+
+    private void jtFuncionariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtFuncionariosMouseClicked
+        linha  = jtFuncionarios.getSelectedRow();
+        if (linha != -1) {
+            jtxIdFuncionario.setText(jtFuncionarios.getValueAt(linha, 0).toString());
+            jtxNome.setText(jtFuncionarios.getValueAt(linha, 1).toString());
+            jtxCpf.setText(jtFuncionarios.getValueAt(linha, 2).toString());
+            jcbCargo.setSelectedItem((CargoFuncionario) jtFuncionarios.getValueAt(linha, 4));
+            jbEditar.setEnabled(true);
+            jbExcluir.setEnabled(true);
+            jtxIdFuncionario.setEditable(false);
+            jtxNome.setEditable(true);
+            jtxCpf.setEditable(true);
+            jcbCargo.setEditable(true);
+            linha = -1;
+        }
+    }//GEN-LAST:event_jtFuncionariosMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton jbSalvar;
+    private javax.swing.JButton jbEditar;
+    private javax.swing.JButton jbExcluir;
     private javax.swing.JComboBox<CargoFuncionario> jcbCargo;
     private javax.swing.JLabel jlCargo;
     private javax.swing.JLabel jlCpf;
+    private javax.swing.JLabel jlIdFuncionario;
     private javax.swing.JLabel jlNome;
     private javax.swing.JTable jtFuncionarios;
     private javax.swing.JFormattedTextField jtxCpf;
+    private javax.swing.JTextField jtxIdFuncionario;
     private javax.swing.JTextField jtxNome;
     // End of variables declaration//GEN-END:variables
 
