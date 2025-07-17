@@ -34,13 +34,22 @@ public class Quarto {
     public void setCategoria(CategoriaQuarto categoria) {
         this.categoria = categoria;
     }
-
-    public String toString() {
-        return  idQuarto + " - " + categoria + " - R$" + valor;
-    }    
     
     public Integer getValorInteger() {
         Float valorConvertido = valor * 100;
         return valorConvertido.intValue();
+    }
+    
+    @Override
+    public String toString(){
+        return  idQuarto + " - " + categoria;
+    }
+    
+    @Override
+    public boolean equals(Object obj){
+        if(this == obj) return true;
+        if(obj == null || this.getClass() != obj.getClass()) return false;
+        Quarto other = (Quarto) obj;
+        return this.idQuarto.equals(other.getIdQuarto());
     }
 }

@@ -4,8 +4,6 @@
  */
 package view.quartos;
 
-import view.funcionarios.*;
-import controller.FuncionarioController;
 import controller.QuartoController;
 import enums.CategoriaQuarto;
 import java.util.Arrays;
@@ -13,7 +11,6 @@ import java.util.HashMap;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import model.Funcionario;
 import model.Quarto;
 import relatorios.Relatorio;
 

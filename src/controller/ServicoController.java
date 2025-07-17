@@ -26,7 +26,7 @@ public class ServicoController {
             ps.setInt(1, servico.getHospede().getIdHospede());
             ps.setString(2, servico.getTipo().getDescricao());
             ps.setInt(3, servico.getValorInteger());
-            ps.setDate(4, servico.getDtServicoSql());
+            ps.setTimestamp(4, servico.getDtServicoTimestamp());
 
             ps.execute();
         } catch (SQLException e) {
@@ -48,7 +48,7 @@ public class ServicoController {
             ps.setInt(1, servico.getHospede().getIdHospede());
             ps.setString(2, servico.getTipo().getDescricao());
             ps.setInt(3, servico.getValorInteger());
-            ps.setDate(4, servico.getDtServicoSql());
+            ps.setTimestamp(4, servico.getDtServicoTimestamp());
             ps.setInt(5, servico.getIdServico());
 
             ps.execute();
@@ -102,10 +102,39 @@ public class ServicoController {
                 servico.setDtServico(rs.getDate("dt_servico"));
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao inserir:" + e.getMessage());
+            System.out.println("Erro ao buscar:" + e.getMessage());
         }
         c.desconectar();
         return servico;
+    }
+    
+    public List<Servico> findByTipoServico(TipoServico tp){
+        Conexao c = new Conexao();
+        c.conectar();
+        
+        String sql = "SELECT * FROM tb_servico s INNER JOIN tb_hospede h WHERE s.id_hospede = h.id_hospede AND s.vc_tipo = ?";
+
+        List<Servico> lista = new ArrayList<>();
+        try {
+            PreparedStatement ps = c.conector.prepareStatement(sql);
+            ps.setString(1, tp.getDescricao());
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Hospede h = new Hospede(rs.getString("vc_cpf"), rs.getString("vc_nome"));
+                h.setIdHospede(rs.getInt("id_hospede"));
+                Servico s = new Servico();
+                s.setIdServico(rs.getInt("id_servico"));
+                s.setHospede(h);
+                s.setTipo(TipoServico.fromDescricao(rs.getString("vc_tipo")));
+                s.setValor(rs.getFloat("int_valor") / 100.0f);
+                s.setDtServico(rs.getTimestamp("dt_servico"));
+                lista.add(s);
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao buscar:" + e.getMessage());
+        }
+        c.desconectar();
+        return lista;
     }
 
     public List<Servico> findAll(){
@@ -127,11 +156,11 @@ public class ServicoController {
                 s.setHospede(h);
                 s.setTipo(TipoServico.fromDescricao(rs.getString("vc_tipo")));
                 s.setValor(rs.getFloat("int_valor") / 100.0f);
-                s.setDtServico(rs.getDate("dt_servico"));
+                s.setDtServico(rs.getTimestamp("dt_servico"));
                 lista.add(s);
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao inserir:" + e.getMessage());
+            System.out.println("Erro ao buscar:" + e.getMessage());
         }
         c.desconectar();
         return lista;

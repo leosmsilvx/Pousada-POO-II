@@ -6,7 +6,6 @@ package view.funcionarios;
 
 import controller.FuncionarioController;
 import enums.CargoFuncionario;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -167,8 +166,8 @@ public class GerenciarFuncionarioView extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlCargo)
                     .addComponent(jcbCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -183,7 +182,7 @@ public class GerenciarFuncionarioView extends javax.swing.JInternalFrame {
         jtxIdFuncionario.setEditable(false);
         jtxNome.setEditable(false);
         jtxCpf.setEditable(false);
-        jcbCargo.setEditable(false);
+        jcbCargo.setEnabled(false);
     }
     
     private void preencherTabela(){
@@ -275,7 +274,7 @@ public class GerenciarFuncionarioView extends javax.swing.JInternalFrame {
             jtxIdFuncionario.setEditable(false);
             jtxNome.setEditable(true);
             jtxCpf.setEditable(true);
-            jcbCargo.setEditable(true);
+            jcbCargo.setEnabled(true);
             linha = -1;
         }
     }//GEN-LAST:event_jtFuncionariosMouseClicked

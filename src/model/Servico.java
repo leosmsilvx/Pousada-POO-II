@@ -53,8 +53,8 @@ public class Servico{
         this.tipo = tipo;
     }
 
-    public java.sql.Date getDtServicoSql(){
-        return new java.sql.Date(dtServico.getTime());
+    public java.sql.Timestamp getDtServicoTimestamp(){
+        return new java.sql.Timestamp(dtServico.getTime());
     }
 
     public Integer getValorInteger(){

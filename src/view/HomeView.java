@@ -5,12 +5,20 @@
 package view;
 
 import javax.swing.JOptionPane;
+import view.estadia.CadastrarEstadiaView;
+import view.estadia.GerenciarEstadiaView;
+import view.estadia.RelatorioEstadiaView;
 import view.funcionarios.CadastrarFuncionarioView;
 import view.funcionarios.GerenciarFuncionarioView;
 import view.funcionarios.RelatorioFuncionarioView;
+import view.hospede.CadastrarHospedeView;
+import view.hospede.GerenciarHospedeView;
 import view.quartos.CadastrarQuartoView;
 import view.quartos.GerenciarQuartoView;
 import view.quartos.RelatorioQuartoView;
+import view.servicos.CadastrarServicoView;
+import view.servicos.GerenciarServicoView;
+import view.servicos.RelatorioServicoView;
 
 /**
  *
@@ -73,10 +81,17 @@ public class HomeView extends javax.swing.JFrame {
         jmiCadastrarQuar = new javax.swing.JMenuItem();
         jmiGerenciarQuar = new javax.swing.JMenuItem();
         jmiRelatorioQuar = new javax.swing.JMenuItem();
+        jmHospede = new javax.swing.JMenu();
+        jmiCadastrarHosp = new javax.swing.JMenuItem();
+        jmiGerenciarHosp = new javax.swing.JMenuItem();
         jmEstadia = new javax.swing.JMenu();
         jmiCadastrarEsta = new javax.swing.JMenuItem();
+        jmiGerenciarEsta = new javax.swing.JMenuItem();
+        jmiRelatorioEsta = new javax.swing.JMenuItem();
         jmServicos = new javax.swing.JMenu();
         jmiCadastrarServ = new javax.swing.JMenuItem();
+        jmiGerenciarServ = new javax.swing.JMenuItem();
+        jmiRelatorioServ = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -149,17 +164,79 @@ public class HomeView extends javax.swing.JFrame {
 
         jmbPrincipal.add(jmQuarto);
 
+        jmHospede.setText("Hospede");
+
+        jmiCadastrarHosp.setText("Cadastrar");
+        jmiCadastrarHosp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiCadastrarHospActionPerformed(evt);
+            }
+        });
+        jmHospede.add(jmiCadastrarHosp);
+
+        jmiGerenciarHosp.setText("Gerenciar");
+        jmiGerenciarHosp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiGerenciarHospActionPerformed(evt);
+            }
+        });
+        jmHospede.add(jmiGerenciarHosp);
+
+        jmbPrincipal.add(jmHospede);
+
         jmEstadia.setText("Estadias");
 
         jmiCadastrarEsta.setText("Cadastrar");
+        jmiCadastrarEsta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiCadastrarEstaActionPerformed(evt);
+            }
+        });
         jmEstadia.add(jmiCadastrarEsta);
+
+        jmiGerenciarEsta.setText("Gerenciar");
+        jmiGerenciarEsta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiGerenciarEstaActionPerformed(evt);
+            }
+        });
+        jmEstadia.add(jmiGerenciarEsta);
+
+        jmiRelatorioEsta.setText("Relatório");
+        jmiRelatorioEsta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiRelatorioEstaActionPerformed(evt);
+            }
+        });
+        jmEstadia.add(jmiRelatorioEsta);
 
         jmbPrincipal.add(jmEstadia);
 
         jmServicos.setText("Serviços");
 
         jmiCadastrarServ.setText("Cadastrar");
+        jmiCadastrarServ.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiCadastrarServActionPerformed(evt);
+            }
+        });
         jmServicos.add(jmiCadastrarServ);
+
+        jmiGerenciarServ.setText("Gerenciar");
+        jmiGerenciarServ.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiGerenciarServActionPerformed(evt);
+            }
+        });
+        jmServicos.add(jmiGerenciarServ);
+
+        jmiRelatorioServ.setText("Relatório");
+        jmiRelatorioServ.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiRelatorioServActionPerformed(evt);
+            }
+        });
+        jmServicos.add(jmiRelatorioServ);
 
         jmbPrincipal.add(jmServicos);
 
@@ -208,6 +285,46 @@ public class HomeView extends javax.swing.JFrame {
         abrirOuFocarView(relquarview);
     }//GEN-LAST:event_jmiRelatorioQuarActionPerformed
 
+    private void jmiCadastrarServActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCadastrarServActionPerformed
+        CadastrarServicoView cadservview = new CadastrarServicoView();
+        abrirOuFocarView(cadservview);
+    }//GEN-LAST:event_jmiCadastrarServActionPerformed
+
+    private void jmiGerenciarServActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiGerenciarServActionPerformed
+        GerenciarServicoView gerservview = new GerenciarServicoView();
+        abrirOuFocarView(gerservview);
+    }//GEN-LAST:event_jmiGerenciarServActionPerformed
+
+    private void jmiRelatorioServActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiRelatorioServActionPerformed
+        RelatorioServicoView relservview = new RelatorioServicoView();
+        abrirOuFocarView(relservview);
+    }//GEN-LAST:event_jmiRelatorioServActionPerformed
+
+    private void jmiCadastrarHospActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCadastrarHospActionPerformed
+        CadastrarHospedeView cadhospview = new CadastrarHospedeView();
+        abrirOuFocarView(cadhospview);
+    }//GEN-LAST:event_jmiCadastrarHospActionPerformed
+
+    private void jmiGerenciarHospActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiGerenciarHospActionPerformed
+        GerenciarHospedeView gerhospview = new GerenciarHospedeView();
+        abrirOuFocarView(gerhospview);
+    }//GEN-LAST:event_jmiGerenciarHospActionPerformed
+
+    private void jmiGerenciarEstaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiGerenciarEstaActionPerformed
+        GerenciarEstadiaView gerestaview = new GerenciarEstadiaView();
+        abrirOuFocarView(gerestaview);
+    }//GEN-LAST:event_jmiGerenciarEstaActionPerformed
+
+    private void jmiCadastrarEstaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCadastrarEstaActionPerformed
+        CadastrarEstadiaView cadestaview = new CadastrarEstadiaView();
+        abrirOuFocarView(cadestaview);
+    }//GEN-LAST:event_jmiCadastrarEstaActionPerformed
+
+    private void jmiRelatorioEstaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiRelatorioEstaActionPerformed
+        RelatorioEstadiaView relestaview = new RelatorioEstadiaView();
+        abrirOuFocarView(relestaview);
+    }//GEN-LAST:event_jmiRelatorioEstaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -237,16 +354,23 @@ public class HomeView extends javax.swing.JFrame {
     private javax.swing.JDesktopPane areaDeTrabalho;
     private javax.swing.JMenu jmEstadia;
     private javax.swing.JMenu jmFuncionario;
+    private javax.swing.JMenu jmHospede;
     private javax.swing.JMenu jmQuarto;
     private javax.swing.JMenu jmServicos;
     private javax.swing.JMenuBar jmbPrincipal;
     private javax.swing.JMenuItem jmiCadastrarEsta;
     private javax.swing.JMenuItem jmiCadastrarFunc;
+    private javax.swing.JMenuItem jmiCadastrarHosp;
     private javax.swing.JMenuItem jmiCadastrarQuar;
     private javax.swing.JMenuItem jmiCadastrarServ;
+    private javax.swing.JMenuItem jmiGerenciarEsta;
     private javax.swing.JMenuItem jmiGerenciarFunc;
+    private javax.swing.JMenuItem jmiGerenciarHosp;
     private javax.swing.JMenuItem jmiGerenciarQuar;
+    private javax.swing.JMenuItem jmiGerenciarServ;
+    private javax.swing.JMenuItem jmiRelatorioEsta;
     private javax.swing.JMenuItem jmiRelatorioFunc;
     private javax.swing.JMenuItem jmiRelatorioQuar;
+    private javax.swing.JMenuItem jmiRelatorioServ;
     // End of variables declaration//GEN-END:variables
 }
